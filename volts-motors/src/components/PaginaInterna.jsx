@@ -1,5 +1,5 @@
 // PaginaInterna: moldura comum das páginas Tecnologia, Modelos, Sobre, Contato e Pedido.
-// Monta: menu no topo, título, conteúdo (children) e rodapé. O rodapé fica sempre embaixo da tela.
+// Monta: menu no topo, título, conteúdo(children) e rodapé. O rodapé fica sempre embaixo da tela.
 import Menu from "./Menu.jsx";
 
 export default function PaginaInterna({ titulo, subtitulo, children }) {

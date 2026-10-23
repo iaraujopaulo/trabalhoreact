@@ -1,8 +1,8 @@
 // Home (rota "/"): página inicial.
-// Tem 3 partes: topo com imagem de fundo e menu, seção "Visão" e rodapé com os parceiros.
+// Tem 3 partes: topo com imagem de fundo e menu, seção "Visão" e rodapé com parceiros, localização e contato.
 import Menu from "../components/Menu.jsx";
 import Direitos from "../components/Direitos.jsx";
-import { IMG, PARCEIROS } from "../constants.js";
+import { CONTATO, IMG, PARCEIROS } from "../constants.js";
 
 export default function Home() {
   return (
@@ -52,22 +52,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3) Rodapé branco com os parceiros e os direitos autorais */}
+      {/* 3) Rodapé branco com os parceiros, a localização (mapa, telefone, WhatsApp e horários) e os direitos autorais */}
       <footer className="bg-white text-dark py-5 position-relative">
         <div className="container">
           <div className="row align-items-center g-4 pb-4">
-            {/* Coluna da esquerda: nome da marca e legenda */}
-            <div className="col-md-6 text-center text-md-start">
+            {/* Coluna 1: nome da marca e legenda */}
+            <div className="col-lg-3 text-center text-lg-start">
               <h1 className="h5 mb-3" style={{ letterSpacing: 7 }}>VOLTS MOTORS</h1>
               <h2 className="h5 fw-normal mb-0">Nossos parceiros.</h2>
             </div>
-            {/* Coluna da direita: um nome por linha (lista PARCEIROS do constants.js), sem link */}
-            <div className="col-md-6 d-flex flex-column align-items-center align-items-md-start">
+
+            {/* Coluna 2: um nome por linha (lista PARCEIROS do constants.js), sem link */}
+            <div className="col-lg-2 d-flex flex-column align-items-center align-items-lg-start">
               {PARCEIROS.map((nome) => (
                 <span key={nome} className="mb-2">&copy;{nome}</span>
               ))}
             </div>
+
+            {/* Coluna 3: localização. Texto com os dados de contato à esquerda e o mapa à direita (empilham no celular) */}
+            <div className="col-lg-7">
+              <div className="row g-3 align-items-start">
+                {/* Endereço, telefone, WhatsApp e horários (dados do objeto CONTATO, em constants.js) */}
+                <div className="col-md-5">
+                  <h2 className="h6 fw-semibold mb-3">Onde estamos</h2>
+                  <p className="small mb-2">
+                    <strong>Endereço:</strong><br />
+                    {CONTATO.endereco}
+                    <br />
+                    {/* Abre o endereço no Google Maps em outra aba (rel evita que a nova aba controle esta página) */}
+                    <a className="link-dark" href={CONTATO.mapaLink} target="_blank" rel="noopener noreferrer">Ver rota no Google Maps</a>
+                  </p>
+                  {/* tel: abre o discador do celular */}
+                  <p className="small mb-2">
+                    <strong>Telefone:</strong><br />
+                    <a className="link-dark" href={CONTATO.telefoneLink}>{CONTATO.telefone}</a>
+                  </p>
+                  {/* wa.me abre uma conversa no WhatsApp */}
+                  <p className="small mb-2">
+                    <strong>WhatsApp:</strong><br />
+                    <a className="link-dark" href={CONTATO.whatsappLink} target="_blank" rel="noopener noreferrer">{CONTATO.whatsapp}</a>
+                  </p>
+                  {/* Um horário por linha (lista CONTATO.horarios) */}
+                  <p className="small mb-0">
+                    <strong>Horários de funcionamento:</strong>
+                    {CONTATO.horarios.map(([dias, horario]) => (
+                      <span key={dias} className="d-block">{dias}: {horario}</span>
+                    ))}
+                  </p>
+                </div>
+
+                {/* Mapa do Google Maps com o ponto marcado no endereço (precisa de internet para carregar) */}
+                <div className="col-md-7">
+                  <iframe
+                    title="Mapa com a localização da VOLTS MOTORS"
+                    src={CONTATO.mapaEmbed}
+                    width="100%"
+                    height="280"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
           </div>
+
           {/* fixo = false: o texto fica dentro do rodapé, e não preso à tela */}
           <Direitos cor="#555" fixo={false} />
         </div>

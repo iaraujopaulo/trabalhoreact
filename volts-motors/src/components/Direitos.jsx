@@ -1,4 +1,4 @@
-// Direitos: texto de direitos autorais.
+
 // "cor" muda a cor do texto; "fixo" prende o texto no rodapé da tela (usado nas telas de login/cadastro/senha).
 export default function Direitos({ cor = "rgba(255,255,255,.75)", fixo = true }) {
   return (

@@ -34,6 +34,25 @@ export const TECNOLOGIAS = [
 // Parceiros mostrados no rodapé da Home
 export const PARCEIROS = ["Adriano", "Bruno", "Igor", "Mateus", "Patricia", "Ronaldo", "Weberth"];
 
+// Localização e contato da empresa (mostrados no rodapé da Home, junto com o mapa)
+const ENDERECO = "Av. Humberto Monte, 2929 - Pici, Fortaleza - CE, 60440-593";
+export const CONTATO = {
+  endereco: ENDERECO,
+  telefone: "(85) 3235-5670",
+  telefoneLink: "tel:+558532355670", // abre o discador no celular
+  whatsapp: "(85) 99241-4532",
+  whatsappLink: "https://wa.me/5585992414532", // abre a conversa no WhatsApp (código 55 = Brasil)
+  // Horários de funcionamento: cada item é [dias, horário]
+  horarios: [
+    ["Segunda a sexta-feira", "08:00 às 17:00"],
+    ["Sábado", "08:00 às 12:00"],
+  ],
+  // Mapa do Google Maps (versão para incorporar) com o ponto marcado no endereço; encodeURIComponent trata espaços e acentos
+  mapaEmbed: "https://www.google.com/maps?q=" + encodeURIComponent(ENDERECO) + "&output=embed",
+  // Link para abrir o endereço no Google Maps (ver rota)
+  mapaLink: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ENDERECO),
+};
+
 // Título da aba do navegador para cada rota
 export const TITULOS = {
   "/": "VOLTS MOTORS",

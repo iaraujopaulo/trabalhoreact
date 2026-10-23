@@ -1,4 +1,4 @@
-// Hook que vai para outra rota depois de alguns milissegundos (dá tempo de ler a mensagem de sucesso)
+// Hook que vai para outra rota depois de alguns segundos
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
